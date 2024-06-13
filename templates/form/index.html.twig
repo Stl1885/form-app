@@ -1,5 +1,18 @@
 {# templates/form/index.html.twig #}
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Send</button>
-{{ form_end(form) }}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Formulaire de contact</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Submit') }}</button>
+    {{ form_end(form) }}
+
+    {% for message in app.flashes('success') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
